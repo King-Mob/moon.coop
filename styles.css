@@ -1,0 +1,22 @@
+body {
+  background-color: #101010;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  width: fit-content;
+  font-size: 5vh;
+}
+
+p {
+  width: fit-content;
+  font-size: 2.5vh;
+  text-align: center;
+}
