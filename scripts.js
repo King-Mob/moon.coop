@@ -21,7 +21,7 @@ const getSunday = (fullMoon) => {
   const sundayDate = new Date(fullMoon);
   if (sundayDate.getDay() !== 0) {
     const daysToGo = 7 - fullMoon.getDay();
-    sundayDate.setDate(sundayDate.getDate() + daysToGo);
+    sundayDate.setDate(fullMoon.getDate() + daysToGo);
   }
 
   return sundayDate;
