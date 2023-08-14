@@ -17,10 +17,10 @@ body {
   }
 }
 
-
 h1 {
   width: fit-content;
   font-size: 5vh;
+  text-align: center;
 }
 
 p {
