@@ -12,8 +12,11 @@ body {
 }
 
 @media screen and (min-width: 480px) {
-  margin: 0% 20%;
+  #container{
+    margin: 0% 20%;
+  }
 }
+
 
 h1 {
   width: fit-content;
