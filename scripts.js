@@ -54,6 +54,7 @@ const calculateMeeting = async (moonData) => {
 };
 
 const start = async () => {
+  /*
   const localMoonStorage = localStorage.getItem("moonData");
 
   if (localMoonStorage) {
@@ -74,6 +75,14 @@ const start = async () => {
     calculateMeeting(moonData);
     localStorage.setItem("moonData", JSON.stringify(moonData));
   }
+*/
+
+  const calendarResponse = await fetch(
+    "https://cloud.ldn.cash/remote.php/dav/calendars/john.e/moon_shared_by_szczepan/?export&accept=jcal"
+  );
+  const calendar = await calendarResponse.json();
+
+  console.log(calendar);
 };
 
 start();
