@@ -34,8 +34,15 @@ const formatEvent = (event) => {
 };
 
 const start = async () => {
+  const today = new Date(Date.now());
+  const oneYearLater = new Date(Date.now()).setFullYear(
+    today.getFullYear() + 1
+  );
+  const startDate = Math.floor(today / 1000);
+  const endDate = Math.floor(oneYearLater / 1000);
+
   const calendarResponse = await fetch(
-    "https://cloud.ldn.cash/remote.php/dav/calendars/john.e/moon_shared_by_szczepan/?export&accept=jcal",
+    `https://cloud.ldn.cash/remote.php/dav/calendars/john.e/moon_shared_by_szczepan/?export&accept=jcal&expand=1&start=${startDate}&end=${endDate}`,
     {
       headers: {
         Authorization: `Basic ${btoa(
@@ -48,9 +55,9 @@ const start = async () => {
 
   const events = processCalendar(calendar);
 
-  const upcomingEvents = events
-    .filter((event) => Date.now() < new Date(event.start))
-    .sort((eventA, eventB) => new Date(eventA.start) - new Date(eventB.start));
+  const upcomingEvents = events.sort(
+    (eventA, eventB) => new Date(eventA.start) - new Date(eventB.start)
+  );
 
   const dateDisplay = document.getElementById("meeting-date");
   const dateText = formatEvent(upcomingEvents[0]);
