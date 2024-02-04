@@ -1,88 +1,70 @@
-const obfuscatedKey = "c5308ca29818nsja8f5a1p577a89107e191c1hsm24771a63f6";
+const obfuscatedUser = "e1.pnuhgolj^";
+const obfuscatedPassword = 'On<iK5]dI0c4WqrsI"x(o5-LE48;ju';
 
-const getMoonData = async () => {
-  const options = {
-    headers: {
-      "X-RapidAPI-Key": obfuscatedKey.split("").reverse().join(""),
-      "X-RapidAPI-Host": "moon-phase.p.rapidapi.com",
-    },
+const unobfuscator = (obfuscated) => {
+  return obfuscated
+    .split("")
+    .map((char, index) => (index % 2 === 0 ? char : ""))
+    .reverse()
+    .join("");
+};
+
+const processCalendar = (calendar) => {
+  const findProperty = (event, property) => {
+    const propertyCollection = event[1].find(
+      (attribute) => attribute[0] === property
+    );
+
+    return propertyCollection ? propertyCollection[3] : null;
   };
 
-  const response = await fetch(
-    "https://moon-phase.p.rapidapi.com/advanced",
-    options
-  );
-  const moonData = await response.json();
-
-  return moonData;
+  return calendar[2]
+    .filter((item) => item[0] === "vevent")
+    .map((event) => ({
+      created: findProperty(event, "created"),
+      start: findProperty(event, "dtstart"),
+      end: findProperty(event, "dtend"),
+      summary: findProperty(event, "summary"),
+      location: findProperty(event, "location"),
+    }));
 };
 
-const getSunday = (fullMoon) => {
-  const sundayDate = new Date(fullMoon);
-  if (sundayDate.getDay() !== 0) {
-    const daysToGo = 7 - fullMoon.getDay();
-    sundayDate.setDate(fullMoon.getDate() + daysToGo);
-  }
-
-  return sundayDate;
-};
-
-const calculateMeeting = async (moonData) => {
-  const currentFullMoon = new Date(
-    moonData.moon_phases.full_moon.current.timestamp * 1000
-  );
-  const nextFullMoon = new Date(
-    moonData.moon_phases.full_moon.next.timestamp * 1000
-  );
-
-  const today = new Date();
-
-  const sundayAfterCurrent = getSunday(currentFullMoon);
-  const sundayAfterNext = getSunday(nextFullMoon);
-
-  const dateDisplay = document.getElementById("meeting-date");
-
-  if (today.valueOf() < sundayAfterCurrent.valueOf()) {
-    const dateText = sundayAfterCurrent.toString().slice(0, 10);
-    dateDisplay.innerHTML = dateText;
-    return;
-  } else {
-    const dateText = sundayAfterNext.toString().slice(0, 10);
-    dateDisplay.innerHTML = dateText;
-    return;
-  }
+const formatEvent = (event) => {
+  return event.start.replace("T", " ").slice(0, 16) + "\n" + event.summary;
 };
 
 const start = async () => {
-  /*
-  const localMoonStorage = localStorage.getItem("moonData");
-
-  if (localMoonStorage) {
-    const localMoonData = JSON.parse(localMoonStorage);
-
-    if (
-      Date.now() <
-      localMoonData.moon_phases.full_moon.next.timestamp * 1000
-    ) {
-      calculateMeeting(localMoonData);
-    } else {
-      const moonData = await getMoonData();
-      calculateMeeting(moonData);
-      localStorage.setItem("moonData", JSON.stringify(moonData));
-    }
-  } else {
-    const moonData = await getMoonData();
-    calculateMeeting(moonData);
-    localStorage.setItem("moonData", JSON.stringify(moonData));
-  }
-*/
-
   const calendarResponse = await fetch(
-    "https://cloud.ldn.cash/remote.php/dav/calendars/john.e/moon_shared_by_szczepan/?export&accept=jcal"
+    "https://cloud.ldn.cash/remote.php/dav/calendars/john.e/moon_shared_by_szczepan/?export&accept=jcal",
+    {
+      headers: {
+        Authorization: `Basic ${btoa(
+          unobfuscator(obfuscatedUser) + ":" + unobfuscator(obfuscatedPassword)
+        )}`,
+      },
+    }
   );
   const calendar = await calendarResponse.json();
 
-  console.log(calendar);
+  const events = processCalendar(calendar);
+
+  const upcomingEvents = events
+    .filter((event) => Date.now() < new Date(event.start))
+    .sort((eventA, eventB) => new Date(eventA.start) - new Date(eventB.start));
+
+  console.log(upcomingEvents);
+
+  const dateDisplay = document.getElementById("meeting-date");
+
+  const dateText = formatEvent(upcomingEvents[0]);
+
+  dateDisplay.innerHTML = dateText;
+};
+
+const toggleMore = () => {
+  const moreMeetings = document.getElementById("more-meetings");
+
+  //if it's hidden, display it, if it's displayed, hide it.
 };
 
 start();
