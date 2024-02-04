@@ -30,7 +30,7 @@ const processCalendar = (calendar) => {
 };
 
 const formatEvent = (event) => {
-  return event.start.replace("T", " ").slice(0, 16) + "\n" + event.summary;
+  return event.summary + "\n" + event.start.replace("T", " ").slice(0, 16);
 };
 
 const start = async () => {
@@ -52,19 +52,38 @@ const start = async () => {
     .filter((event) => Date.now() < new Date(event.start))
     .sort((eventA, eventB) => new Date(eventA.start) - new Date(eventB.start));
 
-  console.log(upcomingEvents);
-
   const dateDisplay = document.getElementById("meeting-date");
-
   const dateText = formatEvent(upcomingEvents[0]);
-
   dateDisplay.innerHTML = dateText;
+
+  const moreMeetings = document.getElementById("more-meetings");
+  upcomingEvents
+    .slice(1)
+    .map((event) => formatEvent(event))
+    .forEach((eventText) => {
+      const eventLine = document.createElement("p");
+      eventLine.innerHTML = eventText;
+      moreMeetings.append(eventLine);
+    });
 };
 
 const toggleMore = () => {
-  const moreMeetings = document.getElementById("more-meetings");
+  console.log("hello");
 
-  //if it's hidden, display it, if it's displayed, hide it.
+  const moreMeetings = document.getElementById("more-meetings");
+  const seeMore = document.getElementById("see-more");
+
+  if (moreMeetings.style.display === "block") {
+    moreMeetings.style.display = "none";
+    seeMore.innerHTML = "more";
+  } else {
+    moreMeetings.style.display = "block";
+    seeMore.innerHTML = "less";
+  }
 };
+
+document.getElementById("see-more").addEventListener("click", (e) => {
+  toggleMore();
+});
 
 start();
