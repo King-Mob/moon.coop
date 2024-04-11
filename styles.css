@@ -39,6 +39,14 @@ p {
   text-align: center;
 }
 
+a {
+  color: lightgrey;
+}
+
+a:visited {
+  color: grey;
+}
+
 li {
   font-size: 2.5vh;
 }
