@@ -1,6 +1,6 @@
 # Moon Coop Social
 
-![image](./moon_house.jpg)
+![image](./moon_house.png)
 
 ## 28th April from 2pm
 
