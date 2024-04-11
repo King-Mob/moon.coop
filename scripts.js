@@ -30,7 +30,11 @@ const processCalendar = (calendar) => {
 };
 
 const formatEvent = (event) => {
-  return event.summary + "\n" + event.start.replace("T", " ").slice(0, 16);
+  const localTime = new Date(event.start);
+
+  return `${event.summary}\n
+  ${localTime.toLocaleDateString()} 
+  ${localTime.toLocaleTimeString().slice(0, 5)}`;
 };
 
 const start = async () => {
