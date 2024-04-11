@@ -1,16 +1,14 @@
 # Moon Coop Social
 
-We're having a social on April 28th.
+![image](./moon_house.jpg)
 
-## Smaller Heading
+## 28th April from 2pm
 
-Location: somewhere
+- You are interested in community living, are tired of greedy landlords and want a cheaper alternative?
+- We are setting up a housing coop and are open for more people to join ([more info here](https://moon.coop))
+- Bring some food, snacks or drinks to share
+- Housing Coop open meeting from 5pm
 
-Prepare for a good time
+## Camberwell Green, SE5
 
-- bullet points
-- second bullet
-
-![image](../../moon-rotating.gif)
-
-_Image from the site_
+If raining we'll be moving into nerby pub "The Tiger".
