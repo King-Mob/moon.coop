@@ -17,6 +17,10 @@ body {
   }
 }
 
+img {
+  max-width: 100%;
+}
+
 h1 {
   width: fit-content;
   font-size: 5vh;
