@@ -29,6 +29,20 @@ const processCalendar = (calendar) => {
     }));
 };
 
+const addEventLinkIfPossible = async (event, eventElement) => {
+  const eventId = event.start.slice(0, 10).replaceAll("-", ".");
+  const eventUrl = "./event/" + eventId + "/index.html";
+  const eventResponse = await fetch(eventUrl);
+
+  if (eventResponse) {
+    const eventLink = document.createElement("a");
+    eventLink.href = eventUrl;
+    eventLink.innerHTML = formatEvent(event);
+    eventElement.innerHTML = "";
+    eventElement.append(eventLink);
+  }
+};
+
 const formatEvent = (event) => {
   const localTime = new Date(event.start);
 
@@ -38,13 +52,12 @@ const formatEvent = (event) => {
 };
 
 const createEventElement = (event) => {
-  const eventLine = document.createElement("p");
-  eventLine.innerHTML = formatEvent(event);
+  const eventElement = document.createElement("p");
+  eventElement.innerHTML = formatEvent(event);
 
-  //test fetching event page
-  //if status 200 add a link to it
+  addEventLinkIfPossible(event, eventElement);
 
-  return eventLine;
+  return eventElement;
 };
 
 const start = async () => {
@@ -95,11 +108,11 @@ const toggleMore = () => {
   const moreMeetings = document.getElementById("more-events");
   const seeMore = document.getElementById("see-more");
 
-  if (moreMeetings.style.display === "block") {
+  if (moreMeetings.style.display === "flex") {
     moreMeetings.style.display = "none";
     seeMore.innerHTML = "more";
   } else {
-    moreMeetings.style.display = "block";
+    moreMeetings.style.display = "flex";
     seeMore.innerHTML = "less";
   }
 };
