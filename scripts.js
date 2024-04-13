@@ -35,6 +35,7 @@ const addEventLinkIfPossible = async (event, eventElement) => {
 
   try {
     const eventResponse = await fetch(eventUrl);
+    console.log(eventResponse);
 
     if ((eventResponse.status = 200)) {
       const eventLink = document.createElement("a");
@@ -108,8 +109,6 @@ const start = async () => {
 };
 
 const toggleMore = () => {
-  console.log("hello");
-
   const moreMeetings = document.getElementById("more-events");
   const seeMore = document.getElementById("see-more");
 
