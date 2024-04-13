@@ -37,6 +37,16 @@ const formatEvent = (event) => {
   ${localTime.toLocaleTimeString().slice(0, 5)}`;
 };
 
+const createEventElement = (event) => {
+  const eventLine = document.createElement("p");
+  eventLine.innerHTML = formatEvent(event);
+
+  //test fetching event page
+  //if status 200 add a link to it
+
+  return eventLine;
+};
+
 const start = async () => {
   const today = new Date(Date.now());
   const oneYearLater = new Date(Date.now()).setFullYear(
@@ -63,25 +73,26 @@ const start = async () => {
     (eventA, eventB) => new Date(eventA.start) - new Date(eventB.start)
   );
 
-  const dateDisplay = document.getElementById("meeting-date");
-  const dateText = formatEvent(upcomingEvents[0]);
-  dateDisplay.innerHTML = dateText;
+  const eventsLoading = document.getElementById("events-loading");
+  eventsLoading.style.display = "none";
 
-  const moreMeetings = document.getElementById("more-meetings");
-  upcomingEvents
-    .slice(1)
-    .map((event) => formatEvent(event))
-    .forEach((eventText) => {
-      const eventLine = document.createElement("p");
-      eventLine.innerHTML = eventText;
-      moreMeetings.append(eventLine);
-    });
+  const nextEvents = document.getElementById("next-events");
+  upcomingEvents.slice(0, 3).forEach((event) => {
+    const eventElement = createEventElement(event);
+    nextEvents.append(eventElement);
+  });
+
+  const moreMeetings = document.getElementById("more-events");
+  upcomingEvents.slice(3).forEach((event) => {
+    const eventElement = createEventElement(event);
+    moreMeetings.append(eventElement);
+  });
 };
 
 const toggleMore = () => {
   console.log("hello");
 
-  const moreMeetings = document.getElementById("more-meetings");
+  const moreMeetings = document.getElementById("more-events");
   const seeMore = document.getElementById("see-more");
 
   if (moreMeetings.style.display === "block") {
