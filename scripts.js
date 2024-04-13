@@ -32,14 +32,19 @@ const processCalendar = (calendar) => {
 const addEventLinkIfPossible = async (event, eventElement) => {
   const eventId = event.start.slice(0, 10).replaceAll("-", ".");
   const eventUrl = "./event/" + eventId + "/index.html";
-  const eventResponse = await fetch(eventUrl);
 
-  if (eventResponse) {
-    const eventLink = document.createElement("a");
-    eventLink.href = eventUrl;
-    eventLink.innerHTML = formatEvent(event);
-    eventElement.innerHTML = "";
-    eventElement.append(eventLink);
+  try {
+    const eventResponse = await fetch(eventUrl);
+
+    if ((eventResponse.status = 200)) {
+      const eventLink = document.createElement("a");
+      eventLink.href = eventUrl;
+      eventLink.innerHTML = formatEvent(event);
+      eventElement.innerHTML = "";
+      eventElement.append(eventLink);
+    }
+  } catch (err) {
+    console.log("No event at", eventUrl);
   }
 };
 
