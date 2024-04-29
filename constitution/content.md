@@ -27,13 +27,13 @@ Membership of Moon Co-op shall be open to any person:
 - Who is committed to the purposes, objectives and policies of Moon Co-op;
 - Regardless of gender, race, nationality, disability, socioeconomic status, sexual preference, religion or belief - this list is not exhaustive.
 
-  4.1 Becoming a member
+### 4.1 Becoming a member
 
 - Members will apply for membership at any General Meeting;
 - Membership will have a non-refundable nominal £1 fee, stored by the Treasurer, which will go towards a petty Moon Co-op pot for printing, refreshments and other costs associated with meetings;
 - A list of all members will be kept by the Secretary.
 
-  4.2 Ceasing to be a member
+### 4.2 Ceasing to be a member
 
 - Members may resign at any time in writing to the Secretary, or in person at a General Meeting;
 - Membership may be refused, suspended or revoked for good reason at a General Meeting, including but not exclusively, due to failure to act in accordance with the values and beliefs of Moon Co-op, or where it is considered membership would be detrimental to Moon Co-op’s objectives and activities.
@@ -56,7 +56,7 @@ Membership of Moon Co-op shall be open to any person:
 
 ## 6. Meetings
 
-6.1. Annual General Meetings
+### 6.1. Annual General Meetings
 
 - An Annual General Meeting (AGM) will be held within fifteen months of the previous AGM;
 - All Members will be notified in writing at least 3 weeks before the date of the meeting, giving the venue, date and time and notice may be by telephone, apps, email or post;
@@ -68,14 +68,14 @@ Membership of Moon Co-op shall be open to any person:
 - The officers will present reports of the business, achievements towards its objectives, and the accounts of Moon Co-op for the previous year;
 - Any proposals given to the Secretary or Chair at least 14 days in advance of the meeting will be discussed.
 
-  6.2 Special General Meetings
+### 6.2 Special General Meetings
 
 - The Secretary will call a Special General Meeting at the request of at least three members giving a written request to the Chair or Secretary stating the reason for their request;
 - The meeting will take place within three weeks of the request;
 - All Members will be given two weeks' notice of such a meeting, giving the venue, date, time and agenda, and notice may be by telephone, apps, email or post.
 - The quorum for the Special General Meeting will be 50% of the membership.
 
-  6.3 General Meetings
+### 6.3 General Meetings
 
 - General Meetings are open to all members and will be held at least once a month or more often if necessary.
 - All Members will be given one weeks’ notice of such a meeting, giving the venue, date, time and agenda, and notice may be by telephone, apps, email or post.
