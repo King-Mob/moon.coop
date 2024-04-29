@@ -9,7 +9,8 @@ The name of the Group shall be Moon Co-operative, referred to elsewhere in this 
 ## 2. Purpose and Objectives
 
 Moon Co-op exists to facilitate cooperation between individuals interested in creating long-term, affordable and just living and working spaces for its members.
-2.1. The primary objectives of Moon Co-op are:
+
+The primary objectives of Moon Co-op are:
 
 - To set up a housing co-operative for its members in collaboration with local authorities and other community groups;
 - To identify sites in Southeast London where a housing co-operative can be developed for its members;
