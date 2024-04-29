@@ -35,7 +35,6 @@ const addEventLinkIfPossible = async (event, eventElement) => {
 
   try {
     const eventResponse = await fetch(eventUrl);
-    console.log(eventResponse);
 
     if (eventResponse.status === 200) {
       const eventLink = document.createElement("a");
