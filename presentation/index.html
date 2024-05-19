@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <title>Moon Co-op is now!</title>
+    <link href="../../styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="../../moon-rotating.gif" />
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+    <div id="container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+    <script>
+        const converter = new showdown.Converter();
+
+        fetch("./content.md")
+            .then((res) => res.text())
+            .then((res) => {
+                const introContent = converter.makeHtml(res);
+                const container = document.getElementById("container");
+                container.innerHTML = introContent;
+            });
+    </script>
+</body>
+
+</html>
